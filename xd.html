@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Soporte</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      padding: 20px;
+      color: #fff;
+    }
+    .formulario {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    label {
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+
+  <script>
+    const marcaSelect = document.getElementById("marca");
+    const modeloSelect = document.getElementById("modelo");
+
+    const modelosPorMarca = {
+      msi: ["Stealth 15M", "Raider GE76", "Modern 14"],
+      hp: ["Pavilion", "Omen 15", "Victus"],
+      asus: ["ROG Strix", "TUF Gaming", "ZenBook"]
+    };
+
+    marcaSelect.addEventListener("change", function () {
+      const marcaElegida = this.value;
+      modeloSelect.innerHTML = ""; // Limpiar el select de modelos
+
+      if (modelosPorMarca[marcaElegida]) {
+        modelosPorMarca[marcaElegida].forEach(function(modelo) {
+          const opcion = document.createElement("option");
+          opcion.value = modelo.toLowerCase().replaceAll(" ", "-");
+          opcion.textContent = modelo;
+          modeloSelect.appendChild(opcion);
+        });
+      } else {
+        const opcion = document.createElement("option");
+        opcion.textContent = "-- Primero selecciona una marca --";
+        modeloSelect.appendChild(opcion);
+      }
+    });
+  </script>
+
+</body>
+</html>

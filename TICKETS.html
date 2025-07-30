@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=TICKETS.js></script>
+    <link rel="stylesheet" href="TICKETS.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+    /* Estilo para la caja */
+    .mi-caja {
+      background-color: #f0f0f0;  /* color de fondo */
+      border: 4.5px solid #0072ff;  /* borde azul */
+      padding: 45px;               /* espacio interno */
+      max-width: 400px;            /* ancho máximo */
+      margin: 45px auto;           /* centrado horizontal con margen arriba y abajo */
+      border-radius: 10px;         /* bordes redondeados */
+      font-family: 'Montserrat', sans-serif; }
+      </style>
+</head>
+
+<body>
+    <div class="mi-caja">
+<!-- Titulos -->
+ <h1 style="text-align: center;">
+Tickets de soporte </h1>
+<h3 style="text-align: center;">
+    Gestion y rastreo de incidentes de soporte
+</h3>
+<br>
+
+<!-- Formulario -->
+ <div style="text-align: center;">
+<form id="formulario">
+    <h4 style="text-align: center;"> ID del caso</h4>
+    <input type="text" id="nombre" name="nombre" placeholder="Ingrese ID">
+</br></br></br>
+
+    <h4>Nombre del cliente</h4>
+    <input type="text" id="nombreDelCliente" name="nombreDelCliente" placeholder="Ingrese nombre">
+<br><br><br>
+
+    <h4>Problema del equipo</h4>
+    
+    <textarea type="text" id="problema" name="problema" placeholder="Ingrese problema"></textarea>
+</br></br></br></br>
+
+   <h4>Selecione marca</h4>
+    <select id="marca" name="marca" onchange="elegirModelo()">
+        <option value="">Selecciona una marca</option>
+        <option value="MSI">MSI</option>
+        <option value="ASUS">ASUS</option>
+        <option value="DELL">DELL</option>
+        <option value="HP">HP</option>
+        <option value="APPLE">APPLE</option>
+        <option value="LENOVO">LENOVO</option>
+        <option value="ACER">ACER</option>
+</br>
+    </select>
+
+<br><br>
+<!--Selector de modelos-->
+    <h4>Seleccione modelo</h4>
+    <select id="modelo" name="modelo">
+        <option value="">Selecciona un Modelo</option>
+      </select>
+      
+
+
+      <script>
+        const SeleccionMarca=document.getElementById('marca');
+        const SeleccionModelo=document.getElementById('modelo');
+        //Lista de modelos por marca
+
+        const modelosPorMarca = {
+            MSI: ["Trident", "Aegis", "Infinite", "Delta 15", "Katana"],
+            ASUS: ["Tuf", "Rog", "Vivobook", "Zenbook", "Proart"],
+            DELL: ["Inspiron", "Latitude", "Dell Pro", "Xps", "ChromeBook"],
+            HP: ["Pavilion", "Victus", "Espectre", "EliteBook", "Omen"],
+            APPLE: ["Mac-Mini", "MacBook Air", "MacBook Pro", "IMac", "Mac Studio"],
+            LENOVO: ["ThinkPad", "Legion", "IdeaPad", "Yoga", "IdeaCentre"],
+            ACER: ["Nitro", "Aspire Vero", "Predator Helios", "TravelMate", "Aspire Spin"]
+        };
+
+                SeleccionMarca.addEventListener ("change", function () {
+            const marcaSeleccionada = this.value;
+
+            //Limpia el select de modelos
+            SeleccionModelo.innerHTML="<option value=''> Elige un modelo </option>";
+
+            if (modelosPorMarca[marcaSeleccionada]) {
+                modelosPorMarca[marcaSeleccionada].forEach(function (modelo) {
+                    const option = document.createElement('option');
+                    option.value = modelo.toLowerCase();
+                    option.textContent = modelo;
+                    SeleccionModelo.appendChild(option);
+                    
+                });
+            }
+        });
+    
+      </script>
+<br><br>
+<!--Nombre Empleado-->
+      <h4>Nombre del empleado</h4>
+    <select id="empleado" name="empleado">
+        <option value="">Empleado a cargo</option>
+        <option value="Oscar">Oscar</option>
+        <option value="Antonio">Antonio</option>
+        <option value="Valentino">Valentino</option>
+        <option value="Laaaaafdsfaaaaaaaura">Laura</option>
+    </select>
+
+        <h4>Nivel de Prioridad</h4>
+        <select id="prioridad" name="prioridad">
+            <option value="">---</option>
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+        </select>
+            
+
+
+     <!--Estado del pedido-->
+        <h4>Estado del pedido</h4>
+    <select id="estado" name="estado">
+        <option value="">---</option>
+        <option value="Asignado">Asignado</option>
+        <option value="En proceso">En proceso</option>
+        <option value="Terminado">Terminado</option>
+    </select>
+        
+    <br><br>
+    
+        </div>
+        <button type="button" onclick="restaurar()"> Reiniciar datos 
+
+        </button>
+    
+    <button type="button" onclick="enviar()">
+        Enviar formulario 
+    </button>
+    
+</form>
+    
+       
+   
+</body>
+</html>
